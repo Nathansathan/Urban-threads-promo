@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Threads | Buy 1 Get 1 Promo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script:wght@700&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            background-color: #121212;
+            background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #f4f4f0;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 50px 30px;
+            background: rgba(18, 18, 18, 0.95);
+            border: 3px solid #333;
+            box-shadow: 12px 12px 0px #cc0000;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 4rem;
+            color: #cc0000;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #d1cbbd;
+            margin: 10px 0 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .claim-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.2rem;
+            font-family: 'Anton', sans-serif;
+            color: #fff;
+            background-color: #cc0000;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .claim-btn:hover {
+            background-color: #ff1a1a;
+            transform: translateY(-4px);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: #777;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #f4f4f0;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            border: 3px solid #cc0000;
+            padding: 40px 30px;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 12px 12px 0px #cc0000;
+        }
+
+        .modal-content h2 {
+            font-family: 'Anton', sans-serif;
+            color: #cc0000;
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .modal-content p {
+            color: #f4f4f0;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .close-btn {
+            padding: 12px 30px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.2s;
+        }
+
+        .close-btn:hover {
+            background-color: #666;
+        }
+
+        /* Glitch Cross Background Animation */
+        .cross {
+            position: fixed;
+            color: #cc0000;
+            font-weight: bold;
+            font-family: monospace;
+            pointer-events: none;
+            z-index: -1;
+            animation: glitchRain linear infinite;
+        }
+
+        @keyframes glitchRain {
+            0% { transform: translateY(-10vh); opacity: 0; }
+            10% { opacity: 0.8; transform: translate(-3px, 10vh); }
+            15% { opacity: 0; }
+            30% { opacity: 0.5; transform: translate(3px, 30vh); }
+            40% { opacity: 0; }
+            60% { opacity: 0.9; transform: translate(-2px, 60vh); }
+            100% { transform: translateY(110vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>LIMITED TIME</h1>
+        <div class="subtitle">Buy 1 Get 1 Free Promo</div>
+        <p>Double up your streetwear game. Purchase any tee from the Back-to-School Collection and claim your second one on us!</p>
+        
+        <button class="claim-btn" onclick="showPromoModal()">Claim Promo Code</button>
+        <br>
+        <a href="home.html" class="back-link">&larr; Back to Homepage</a>
+    </div>
+
+    <!-- Claim Success Modal -->
+    <div id="promoModal" class="modal">
+        <div class="modal-content">
+            <h2>PROMO CLAIMED!</h2>
+            <p>Your Buy 1 Get 1 voucher has been locked in. Use code <strong>REBELBOGO</strong> at checkout!</p>
+            <button class="close-btn" onclick="closePromoModal()">CLOSE</button>
+        </div>
+    </div>
+
+    <script>
+        function showPromoModal() {
+            document.getElementById('promoModal').style.display = 'flex';
+        }
+        function closePromoModal() {
+            document.getElementById('promoModal').style.display = 'none';
+        }
+
+        // Background Glitch Crosses
+        for (let i = 0; i < 25; i++) {
+            let cross = document.createElement('div');
+            cross.className = 'cross';
+            cross.innerHTML = '+';
+            cross.style.left = Math.random() * 100 + 'vw';
+            cross.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            cross.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            cross.style.animationDelay = (Math.random() * 2) + 's';
+            if (Math.random() > 0.6) { cross.style.color = '#333'; }
+            document.body.appendChild(cross);
+        }
+    </script>
+</body>
+</html>
