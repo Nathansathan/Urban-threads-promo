@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Threads | Home</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script:wght@700&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            background-color: #121212;
+            background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #f4f4f0;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .banner {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-bottom: 3px solid #cc0000;
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+        }
+
+        .header-text {
+            margin: 40px 20px;
+        }
+
+        h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 3.5rem;
+            color: #cc0000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #d1cbbd;
+            margin-top: -10px;
+        }
+
+        .collection-text {
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        .shop-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px;
+            flex-wrap: wrap;
+        }
+
+        .product-card {
+            background: rgba(18, 18, 18, 0.9);
+            border: 2px solid #333;
+            padding: 20px;
+            width: 280px;
+            box-shadow: 8px 8px 0px #cc0000;
+        }
+
+        .tshirt-placeholder {
+            width: 100%;
+            height: 280px;
+            background-color: #2a2a2a;
+            border: 2px dashed #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .tshirt-placeholder img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .preorder-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            font-family: 'Anton', sans-serif;
+            color: #fff;
+            background-color: #cc0000;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .preorder-btn:hover {
+            background-color: #ff1a1a;
+            transform: translateY(-4px);
+        }
+
+        /* Modal Popup Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            border: 3px solid #cc0000;
+            padding: 40px 30px;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 12px 12px 0px #cc0000;
+        }
+
+        .modal-content h2 {
+            font-family: 'Anton', sans-serif;
+            color: #cc0000;
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .modal-content p {
+            color: #f4f4f0;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .close-btn {
+            padding: 12px 30px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.2s;
+        }
+
+        .close-btn:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hidden Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Banner -->
+    <img src="your-banner-image.png" alt="Urban Threads Banner" class="banner">
+
+    <!-- Header Text -->
+    <div class="header-text">
+        <h1>URBAN THREADS X REBEL</h1>
+        <div class="subtitle">Refuse to be Ordinary</div>
+        <div class="collection-text">Back to school streetwear collection</div>
+    </div>
+
+    <!-- Shop Grid -->
+    <div class="shop-container">
+        
+        <div class="product-card">
+            <div class="tshirt-placeholder">T-Shirt 1 Placeholder</div>
+            <button class="preorder-btn" onclick="showPopup()">Pre Order This T-Shirt</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="tshirt-placeholder">T-Shirt 2 Placeholder</div>
+            <button class="preorder-btn" onclick="showPopup()">Pre Order This T-Shirt</button>
+        </div>
+
+        <div class="product-card">
+            <div class="tshirt-placeholder">T-Shirt 3 Placeholder</div>
+            <button class="preorder-btn" onclick="showPopup()">Pre Order This T-Shirt</button>
+        </div>
+    </div>
+
+    <!-- Live Page Popup -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>SUCCESS!</h2>
+            <p>You successfully pre ordered this tshirt, thank you for shopping at Urban Threads!</p>
+            <button class="close-btn" onclick="closePopup()">CLOSE</button>
+        </div>
+    </div>
+
+    <script>
+        // Start music on first click anywhere on the page
+        document.body.addEventListener('click', function() {
+            let audio = document.getElementById('bg-music');
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+
+        // Popup logic
+        function showPopup() {
+            document.getElementById('successModal').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
