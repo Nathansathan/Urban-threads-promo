@@ -311,19 +311,20 @@
             document.getElementById('zoomModal').style.display = 'none';
         }
 
-        // Generate Glitching Crosses Background
-        for (let i = 0; i < 25; i++) {
-            let cross = document.createElement('div');
+        // Generate Continuous Falling Crosses Animation
+        function createCross() {
+            const cross = document.createElement('div');
             cross.className = 'cross';
-            cross.innerHTML = '+';
-            cross.style.left = Math.random() * 100 + 'vw';
-            cross.style.fontSize = (Math.random() * 15 + 10) + 'px';
-            cross.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            cross.style.animationDelay = (Math.random() * 2) + 's';
-            // Randomly make some crosses dark grey instead of red for depth
-            if (Math.random() > 0.6) { cross.style.color = '#333'; } 
+            cross.textContent = '×';
+            cross.style.left = Math.random() * 100 + '%';
+            cross.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            cross.style.fontSize = (Math.random() * 20 + 20) + 'px';
             document.body.appendChild(cross);
+            
+            setTimeout(() => cross.remove(), 7000);
         }
+        
+        setInterval(createCross, 500);
     </script>
 </body>
 </html>
