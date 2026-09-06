@@ -107,6 +107,7 @@
             background-color: #ff1a1a;
             transform: translateY(-4px);
         }
+        
         .cross {
             position: fixed;
             color: #cc0000;
@@ -146,5 +147,21 @@
             <button type="submit">Shop the Back-to-School Collection now!</button>
         </form>
     </div>
+
+    <script>
+        function createCross() {
+            const cross = document.createElement('div');
+            cross.className = 'cross';
+            cross.textContent = '×';
+            cross.style.left = Math.random() * 100 + '%';
+            cross.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            cross.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.body.appendChild(cross);
+            
+            setTimeout(() => cross.remove(), 7000);
+        }
+        
+        setInterval(createCross, 500);
+    </script>
 </body>
 </html>
