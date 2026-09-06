@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Threads | REBEL Collection</title>
+    <style>
+        /* Importing fonts to match the bold and cursive aesthetic of your art */
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script:wght@700&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            background-color: #121212; /* Dark charcoal background */
+            background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
+            background-size: 20px 20px; /* Subtle texture */
+            color: #f4f4f0;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 50px 30px;
+            background: rgba(18, 18, 18, 0.9);
+            border: 3px solid #333;
+            box-shadow: 12px 12px 0px #cc0000; /* Red offset shadow for a gritty feel */
+            position: relative;
+        }
+
+        .logo img {
+            max-width: 250px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 6rem;
+            color: #cc0000; /* Bold Red */
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            line-height: 1;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #d1cbbd; /* Cream/off-white */
+            margin-top: -25px;
+            margin-bottom: 30px;
+            transform: rotate(-3deg); /* Slight tilt to match the poster */
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #a0a0a0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        input {
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #444;
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #cc0000;
+        }
+
+        button {
+            padding: 18px;
+            font-size: 1.2rem;
+            font-family: 'Anton', sans-serif;
+            color: #fff;
+            background-color: #cc0000;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #ff1a1a;
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <!-- Using your dark background logo here -->
+            <img src="Screenshot 2026-09-06 210030.png" alt="Urban Threads Logo">
+        </div>
+        
+        <h1>REBEL</h1>
+        <div class="subtitle">Refuse to be Ordinary</div>
+        <p>Back to School Streetwear Collection<br><br>Limited Stocks Only!</p>
+        
+        <!-- The form redirects to success.html upon clicking the CTA -->
+        <form onsubmit="event.preventDefault(); window.location.href='success.html';">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <button type="submit">Shop the Back-to-School Collection now!</button>
+        </form>
+    </div>
+</body>
+</html>
