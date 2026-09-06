@@ -144,7 +144,8 @@
         }
 
         .promo-ad:hover {
-            transform: scale(1.02);
+            transform: scale(1.05);
+            border-color: #cc0000;
         }
 
         /* Modal Styles */
@@ -263,7 +264,7 @@
 
     <div class="promo-container">
         <div class="promo-title">Unlock Exclusive Deals</div>
-        <img src="promo-ad.png" alt="Buy 1 Get 1 Promo" class="promo-ad" style="width: 336px; height: 280px; object-fit: cover;" onclick="window.location.href='promo.html'">
+        <img src="promo-ad.png" alt="Buy 1 Get 1 Promo" class="promo-ad" style="width: 336px; height: 280px; object-fit: cover;" onclick="zoomImage(this.src)">
         <!-- Added Buy Button under the promo -->
         <button class="preorder-btn" style="margin-top: 25px; width: auto; padding: 15px 40px;" onclick="window.location.href='promo.html'">CLAIM BUY 1 GET 1 NOW</button>
     </div>
