@@ -31,7 +31,7 @@
         }
 
         .header-text {
-            margin: 40px 20px;
+            margin: 40px 20px 10px;
         }
 
         h1 {
@@ -59,11 +59,27 @@
             font-weight: 700;
         }
 
+        /* New About Section */
+        .about-section {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 0 20px;
+            color: #b3b3b3;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+
+        .about-section span {
+            color: #cc0000;
+            font-weight: 700;
+        }
+
         .shop-container {
             display: flex;
             justify-content: center;
             gap: 30px;
-            padding: 40px;
+            padding: 20px 40px 40px;
             flex-wrap: wrap;
         }
 
@@ -73,23 +89,6 @@
             padding: 20px;
             width: 280px;
             box-shadow: 8px 8px 0px #cc0000;
-        }
-
-        .tshirt-placeholder {
-            width: 100%;
-            height: 280px;
-            background-color: #2a2a2a;
-            border: 2px dashed #555;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #777;
-            margin-bottom: 20px;
-        }
-
-        .tshirt-placeholder img {
-            max-width: 100%;
-            height: auto;
         }
 
         .preorder-btn {
@@ -110,7 +109,33 @@
             transform: translateY(-4px);
         }
 
-        /* Modal Popup Styles */
+        /* New Promo Ad Section */
+        .promo-container {
+            margin: 20px auto 60px;
+            padding: 20px;
+            border-top: 2px dashed #333;
+            max-width: 800px;
+        }
+        
+        .promo-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #d1cbbd;
+            margin-bottom: 20px;
+        }
+
+        .promo-ad {
+            display: block;
+            margin: 0 auto;
+            border: 3px solid #cc0000;
+            box-shadow: 8px 8px 0px #333;
+            transition: transform 0.2s;
+        }
+
+        .promo-ad:hover {
+            transform: scale(1.02);
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -169,24 +194,24 @@
 </head>
 <body>
 
-    <!-- Hidden Audio Player -->
     <audio id="bg-music" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Banner -->
-    <img src="banner.png" alt="Urban Threads Banner" class="banner">
+    <img src="your-banner-image.png" alt="Urban Threads Banner" class="banner">
 
-    <!-- Header Text -->
     <div class="header-text">
         <h1>URBAN THREADS X REBEL</h1>
         <div class="subtitle">Refuse to be Ordinary</div>
         <div class="collection-text">Back to school streetwear collection</div>
     </div>
 
-    <!-- Shop Grid -->
+    <!-- New Introduction Section -->
+    <div class="about-section">
+        <p>Welcome to <span>Urban Threads</span>. We are a startup clothing brand built strictly for college students who want to keep it classy while refusing to be basic. Campus life is your runway, and our mission is to provide premium, statement-making streetwear that ensures you never blend into the background.</p>
+    </div>
+
     <div class="shop-container">
-        
         <div class="product-card">
             <img src="white-rebel-tee.png" alt="White T-Shirt" style="width: 100%; height: 280px; object-fit: cover; border: 2px solid #333; margin-bottom: 20px;">
             <button class="preorder-btn" onclick="showPopup()">Pre Order This T-Shirt</button>
@@ -201,10 +226,16 @@
             <img src="green-rebel-tee.png" alt="Green T-Shirt" style="width: 100%; height: 280px; object-fit: cover; border: 2px solid #333; margin-bottom: 20px;">
             <button class="preorder-btn" onclick="showPopup()">Pre Order This T-Shirt</button>
         </div>
-
     </div>
 
-    <!-- Live Page Popup -->
+    <!-- New Clickable Ad Section -->
+    <div class="promo-container">
+        <div class="promo-title">Unlock Exclusive Deals</div>
+        <a href="promo.html">
+            <img src="promo-ad.png" alt="Buy 1 Get 1 Promo" class="promo-ad" style="width: 336px; height: 280px; object-fit: cover;">
+        </a>
+    </div>
+
     <div id="successModal" class="modal">
         <div class="modal-content">
             <h2>SUCCESS!</h2>
@@ -214,7 +245,6 @@
     </div>
 
     <script>
-        // Start music on first click anywhere on the page
         document.body.addEventListener('click', function() {
             let audio = document.getElementById('bg-music');
             if (audio.paused) {
@@ -222,7 +252,6 @@
             }
         }, { once: true });
 
-        // Popup logic
         function showPopup() {
             document.getElementById('successModal').style.display = 'flex';
         }
