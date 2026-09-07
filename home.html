@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* Fixed container specifically for the rain to prevent scroll glitches */
+        /* Fixed container specifically for the rain */
         #rain-container {
             position: fixed;
             top: 0;
@@ -32,7 +32,7 @@
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            z-index: 1; /* Sits right behind your content */
+            z-index: 0; /* Stays at the very back */
             overflow: hidden;
         }
 
@@ -121,14 +121,13 @@
             max-width: 700px;
             margin: 30px auto;
             padding: 20px;
-            background: rgba(18, 18, 18, 0.85);
-            border: 1px solid #333;
+            background: transparent; /* Made transparent so rain shows behind text */
             color: #b3b3b3;
             font-size: 1.1rem;
             line-height: 1.6;
             letter-spacing: 0.5px;
             position: relative;
-            z-index: 10; /* Keeps content above the rain */
+            z-index: 10; 
         }
 
         .about-section span {
@@ -147,7 +146,7 @@
         }
 
         .product-card {
-            background: rgba(18, 18, 18, 0.95);
+            background: transparent; /* Made transparent so rain shows behind T-shirts */
             border: 2px solid #333;
             padding: 20px;
             width: 280px;
@@ -289,25 +288,25 @@
         /* Heavy Metal / Gothic Background Animation */
         .gothic-bg {
             position: absolute;
-            top: -150px; /* Starts just above the top edge of the monitor */
+            top: -50px; 
             color: #cc0000;
             font-family: 'Times New Roman', serif;
-            text-shadow: 0 0 15px #ff0000, 0 0 30px #990000;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #990000;
             animation: metalRain linear forwards;
         }
 
         @keyframes metalRain {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-            25% { transform: translate(-30px, 30vh) rotate(15deg); opacity: 0.8; }
-            50% { transform: translate(30px, 60vh) rotate(-20deg); opacity: 0.5; }
-            75% { transform: translate(-10px, 90vh) rotate(10deg); opacity: 0.7; }
-            100% { transform: translate(10px, 120vh) rotate(0deg); opacity: 0.6; }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+            25% { transform: translate(-20px, 30vh) rotate(15deg); opacity: 0.7; }
+            50% { transform: translate(20px, 60vh) rotate(-20deg); opacity: 0.3; }
+            75% { transform: translate(-10px, 90vh) rotate(10deg); opacity: 0.6; }
+            100% { transform: translate(10px, 120vh) rotate(0deg); opacity: 0.4; }
         }
     </style>
 </head>
 <body>
 
-    <!-- This container locks the rain to your screen -->
+    <!-- This container locks the rain to the back of your screen -->
     <div id="rain-container"></div>
 
     <nav class="navbar">
@@ -411,20 +410,20 @@
             
             gothicElement.textContent = symbols[Math.floor(Math.random() * symbols.length)];
             
-            gothicElement.style.left = Math.random() * 90 + 5 + '%';
+            gothicElement.style.left = Math.random() * 96 + 2 + '%';
             
-            const duration = Math.random() * 5 + 5; 
+            const duration = Math.random() * 6 + 6; 
             gothicElement.style.animationDuration = duration + 's';
             
-            gothicElement.style.fontSize = (Math.random() * 80 + 60) + 'px';
+            // Reduced sizes: Now generates symbols between 25px and 55px
+            gothicElement.style.fontSize = (Math.random() * 30 + 25) + 'px';
             
-            // Append directly to the fixed rain window, NOT the scrolling body
             document.getElementById('rain-container').appendChild(gothicElement);
             
             setTimeout(() => gothicElement.remove(), duration * 1000);
         }
         
-        setInterval(createHeavyMetalBg, 350);
+        setInterval(createHeavyMetalBg, 250);
 
         // Scroll Animation Logic
         const observerOptions = {
