@@ -122,6 +122,8 @@
             gap: 30px;
             padding: 20px 40px 40px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 10;
         }
 
         .product-card {
@@ -130,6 +132,7 @@
             padding: 20px;
             width: 280px;
             box-shadow: 8px 8px 0px #cc0000;
+            position: relative;
         }
 
         .product-card img {
@@ -170,6 +173,8 @@
             padding: 20px;
             border-top: 2px dashed #333;
             max-width: 800px;
+            position: relative;
+            z-index: 10;
         }
         
         .promo-title {
@@ -249,38 +254,40 @@
             background-color: #666;
         }
 
-        /* Glitch Cross Background Animation */
-        .cross {
-            position: fixed;
-            color: #cc0000;
-            font-weight: bold;
-            font-family: monospace;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.3;
-            animation: glitchRain linear infinite;
-        }
-
-        @keyframes glitchRain {
-            0% { transform: translateY(-10vh); opacity: 0; }
-            10% { opacity: 0.3; transform: translate(-3px, 10vh); }
-            15% { opacity: 0; }
-            30% { opacity: 0.2; transform: translate(3px, 30vh); }
-            40% { opacity: 0; }
-            60% { opacity: 0.3; transform: translate(-2px, 60vh); }
-            100% { transform: translateY(110vh); opacity: 0; }
-        }
-
         /* Scroll Animation Styles */
         .scroll-fade {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            position: relative;
+            z-index: 10;
         }
 
         .scroll-fade.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Heavy Metal / Gothic Background Animation */
+        .gothic-bg {
+            position: fixed;
+            color: #b30000;
+            font-family: 'Times New Roman', serif;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.4;
+            text-shadow: 0 0 10px #cc0000, 0 0 20px #660000;
+            animation: metalRain linear infinite;
+        }
+
+        @keyframes metalRain {
+            0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 0; }
+            10% { opacity: 0.6; }
+            20% { transform: translate(-10px, 20vh) rotate(15deg) scale(1.2); opacity: 0.8; }
+            40% { transform: translate(10px, 40vh) rotate(-25deg) scale(0.8); opacity: 0.2; }
+            60% { transform: translate(-5px, 60vh) rotate(10deg) scale(1.3); opacity: 0.7; }
+            80% { opacity: 0.5; }
+            100% { transform: translateY(110vh) rotate(0deg) scale(1); opacity: 0; }
         }
     </style>
 </head>
@@ -379,19 +386,24 @@
             document.getElementById('zoomModal').style.display = 'none';
         }
 
-        function createCross() {
-            const cross = document.createElement('div');
-            cross.className = 'cross';
-            cross.textContent = '×';
-            cross.style.left = Math.random() * 100 + '%';
-            cross.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            cross.style.fontSize = (Math.random() * 20 + 20) + 'px';
-            document.body.appendChild(cross);
+        // Generate Heavy Metal Gothic Background
+        function createHeavyMetalBg() {
+            const symbols = ['⸸', '⛧', '×', '☠'];
+            const gothicElement = document.createElement('div');
+            gothicElement.className = 'gothic-bg';
             
-            setTimeout(() => cross.remove(), 7000);
+            gothicElement.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            gothicElement.style.left = Math.random() * 100 + '%';
+            gothicElement.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            gothicElement.style.fontSize = (Math.random() * 35 + 25) + 'px';
+            
+            document.body.appendChild(gothicElement);
+            
+            setTimeout(() => gothicElement.remove(), 7000);
         }
         
-        setInterval(createCross, 500);
+        setInterval(createHeavyMetalBg, 400);
 
         // Scroll Animation Logic
         const observerOptions = {
