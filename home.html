@@ -274,18 +274,18 @@
             color: #b30000;
             font-family: 'Times New Roman', serif;
             pointer-events: none;
-            z-index: 1;
-            opacity: 0.4;
-            text-shadow: 0 0 10px #cc0000, 0 0 20px #660000;
+            z-index: 9998;
+            opacity: 0.6;
+            text-shadow: 0 0 10px #cc0000, 0 0 30px #660000;
             animation: metalRain linear infinite;
         }
 
         @keyframes metalRain {
             0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 0; }
             10% { opacity: 0.6; }
-            20% { transform: translate(-10px, 20vh) rotate(15deg) scale(1.2); opacity: 0.8; }
-            40% { transform: translate(10px, 40vh) rotate(-25deg) scale(0.8); opacity: 0.2; }
-            60% { transform: translate(-5px, 60vh) rotate(10deg) scale(1.3); opacity: 0.7; }
+            20% { transform: translate(-15px, 20vh) rotate(15deg) scale(1.1); opacity: 0.8; }
+            40% { transform: translate(15px, 40vh) rotate(-25deg) scale(0.9); opacity: 0.4; }
+            60% { transform: translate(-10px, 60vh) rotate(10deg) scale(1.2); opacity: 0.7; }
             80% { opacity: 0.5; }
             100% { transform: translateY(110vh) rotate(0deg) scale(1); opacity: 0; }
         }
@@ -394,16 +394,20 @@
             
             gothicElement.textContent = symbols[Math.floor(Math.random() * symbols.length)];
             
-            gothicElement.style.left = Math.random() * 100 + '%';
+            // Focus symbols slightly closer to the center content area instead of just the far edges
+            gothicElement.style.left = Math.random() * 90 + 5 + '%';
             gothicElement.style.animationDuration = (Math.random() * 4 + 3) + 's';
-            gothicElement.style.fontSize = (Math.random() * 35 + 25) + 'px';
+            
+            // Massively increased font size to appear much closer and more prominent
+            gothicElement.style.fontSize = (Math.random() * 60 + 50) + 'px';
             
             document.body.appendChild(gothicElement);
             
             setTimeout(() => gothicElement.remove(), 7000);
         }
         
-        setInterval(createHeavyMetalBg, 400);
+        // Spawns a symbol much faster to create a denser background effect
+        setInterval(createHeavyMetalBg, 250);
 
         // Scroll Animation Logic
         const observerOptions = {
