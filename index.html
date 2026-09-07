@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urban Threads | REBEL Collection</title>
     <style>
-        /* Importing fonts to match the bold and cursive aesthetic of your art */
         @import url('https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script:wght@700&family=Roboto:wght@400;700&display=swap');
 
         body {
-            background-color: #121212; /* Dark charcoal background */
+            background-color: #121212;
             background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
-            background-size: 20px 20px; /* Subtle texture */
+            background-size: 20px 20px;
             color: #f4f4f0;
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -22,15 +21,29 @@
             justify-content: center;
             min-height: 100vh;
             text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Fixed container specifically for the rain to prevent scroll glitches */
+        #rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0; /* Stays at the very back */
+            overflow: hidden;
         }
 
         .container {
             max-width: 800px;
             padding: 50px 30px;
-            background: rgba(18, 18, 18, 0.9);
+            background: transparent; /* Made transparent so rain shows behind text */
             border: 3px solid #333;
-            box-shadow: 12px 12px 0px #cc0000; /* Red offset shadow for a gritty feel */
+            box-shadow: 12px 12px 0px #cc0000;
             position: relative;
+            z-index: 10; /* Keeps content above the rain */
         }
 
         .logo img {
@@ -41,7 +54,7 @@
         h1 {
             font-family: 'Anton', sans-serif;
             font-size: 6rem;
-            color: #cc0000; /* Bold Red */
+            color: #cc0000;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 5px;
@@ -52,10 +65,10 @@
         .subtitle {
             font-family: 'Dancing Script', cursive;
             font-size: 3rem;
-            color: #d1cbbd; /* Cream/off-white */
+            color: #d1cbbd;
             margin-top: -25px;
             margin-bottom: 30px;
-            transform: rotate(-3deg); /* Slight tilt to match the poster */
+            transform: rotate(-3deg);
         }
 
         p {
@@ -73,6 +86,8 @@
             width: 100%;
             max-width: 400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 10;
         }
 
         input {
@@ -108,31 +123,32 @@
             transform: translateY(-4px);
         }
         
-        .cross {
-            position: fixed;
+        /* Heavy Metal / Gothic Background Animation */
+        .gothic-bg {
+            position: absolute;
+            top: -50px; 
             color: #cc0000;
-            font-weight: bold;
-            font-family: monospace;
-            pointer-events: none;
-            z-index: -1;
-            animation: glitchRain linear infinite;
+            font-family: 'Times New Roman', serif;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #990000;
+            animation: metalRain linear forwards;
         }
 
-        @keyframes glitchRain {
-            0% { transform: translateY(-10vh); opacity: 0; }
-            10% { opacity: 0.8; transform: translate(-3px, 10vh); }
-            15% { opacity: 0; }
-            30% { opacity: 0.5; transform: translate(3px, 30vh); }
-            40% { opacity: 0; }
-            60% { opacity: 0.9; transform: translate(-2px, 60vh); }
-            100% { transform: translateY(110vh); opacity: 0; }
+        @keyframes metalRain {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+            25% { transform: translate(-20px, 30vh) rotate(15deg); opacity: 0.7; }
+            50% { transform: translate(20px, 60vh) rotate(-20deg); opacity: 0.3; }
+            75% { transform: translate(-10px, 90vh) rotate(10deg); opacity: 0.6; }
+            100% { transform: translate(10px, 120vh) rotate(0deg); opacity: 0.4; }
         }
     </style>
 </head>
 <body>
+
+    <!-- This container locks the rain to the back of your screen -->
+    <div id="rain-container"></div>
+
     <div class="container">
         <div class="logo">
-            <!-- Using your dark background logo here -->
             <img src="LOGO.png" alt="Urban Threads Logo">
         </div>
         
@@ -140,7 +156,6 @@
         <div class="subtitle">Refuse to be Ordinary</div>
         <p>Back to School Streetwear Collection<br><br>Limited Stocks Only!</p>
         
-        <!-- The form redirects to success.html upon clicking the CTA -->
         <form onsubmit="event.preventDefault(); window.location.href='home.html';">
             <input type="text" placeholder="Your Name" required>
             <input type="email" placeholder="Your Email" required>
@@ -149,19 +164,29 @@
     </div>
 
     <script>
-        function createCross() {
-            const cross = document.createElement('div');
-            cross.className = 'cross';
-            cross.textContent = '×';
-            cross.style.left = Math.random() * 100 + '%';
-            cross.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            cross.style.fontSize = (Math.random() * 20 + 20) + 'px';
-            document.body.appendChild(cross);
+        // Generate Heavy Metal Gothic Background
+        function createHeavyMetalBg() {
+            const symbols = ['⸸', '⛧', '×', '☠'];
+            const gothicElement = document.createElement('div');
+            gothicElement.className = 'gothic-bg';
             
-            setTimeout(() => cross.remove(), 7000);
+            gothicElement.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            gothicElement.style.left = Math.random() * 96 + 2 + '%';
+            
+            const duration = Math.random() * 6 + 6; 
+            gothicElement.style.animationDuration = duration + 's';
+            
+            // Generate smaller symbols to pass subtly behind text
+            gothicElement.style.fontSize = (Math.random() * 30 + 25) + 'px';
+            
+            // Append directly to the fixed rain window at the back
+            document.getElementById('rain-container').appendChild(gothicElement);
+            
+            setTimeout(() => gothicElement.remove(), duration * 1000);
         }
         
-        setInterval(createCross, 500);
+        setInterval(createHeavyMetalBg, 250);
     </script>
 </body>
 </html>
