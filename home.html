@@ -272,10 +272,11 @@
         /* Heavy Metal / Gothic Background Animation */
         .gothic-bg {
             position: fixed;
+            top: 0; /* THE FIX: Forces elements to start exactly at the top of the viewport */
             color: #cc0000;
             font-family: 'Times New Roman', serif;
             pointer-events: none;
-            z-index: 9998; /* Floats over the entire page, just under the navbar */
+            z-index: 9998; 
             text-shadow: 0 0 15px #ff0000, 0 0 30px #990000;
             animation: metalRain linear forwards;
         }
