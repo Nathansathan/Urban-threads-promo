@@ -24,6 +24,18 @@
             overflow-x: hidden;
         }
 
+        /* Fixed container specifically for the rain to prevent scroll glitches */
+        #rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1; /* Sits right behind your content */
+            overflow: hidden;
+        }
+
         /* Navigation Bar Styles */
         .navbar {
             position: fixed;
@@ -71,11 +83,13 @@
             border-bottom: 3px solid #cc0000;
             display: block;
             position: relative;
+            z-index: 10;
         }
 
         .header-text {
             margin: 40px 20px 10px;
             position: relative;
+            z-index: 10;
         }
 
         h1 {
@@ -114,6 +128,7 @@
             line-height: 1.6;
             letter-spacing: 0.5px;
             position: relative;
+            z-index: 10; /* Keeps content above the rain */
         }
 
         .about-section span {
@@ -128,6 +143,7 @@
             padding: 20px 40px 40px;
             flex-wrap: wrap;
             position: relative;
+            z-index: 10;
         }
 
         .product-card {
@@ -178,6 +194,7 @@
             border-top: 2px dashed #333;
             max-width: 800px;
             position: relative;
+            z-index: 10;
         }
         
         .promo-title {
@@ -271,19 +288,17 @@
 
         /* Heavy Metal / Gothic Background Animation */
         .gothic-bg {
-            position: fixed;
-            top: 0; /* THE FIX: Forces elements to start exactly at the top of the viewport */
+            position: absolute;
+            top: -150px; /* Starts just above the top edge of the monitor */
             color: #cc0000;
             font-family: 'Times New Roman', serif;
-            pointer-events: none;
-            z-index: 9998; 
             text-shadow: 0 0 15px #ff0000, 0 0 30px #990000;
             animation: metalRain linear forwards;
         }
 
         @keyframes metalRain {
-            0% { transform: translateY(-20vh) rotate(0deg); opacity: 0.6; }
-            25% { transform: translate(-30px, 20vh) rotate(15deg); opacity: 0.8; }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            25% { transform: translate(-30px, 30vh) rotate(15deg); opacity: 0.8; }
             50% { transform: translate(30px, 60vh) rotate(-20deg); opacity: 0.5; }
             75% { transform: translate(-10px, 90vh) rotate(10deg); opacity: 0.7; }
             100% { transform: translate(10px, 120vh) rotate(0deg); opacity: 0.6; }
@@ -291,6 +306,9 @@
     </style>
 </head>
 <body>
+
+    <!-- This container locks the rain to your screen -->
+    <div id="rain-container"></div>
 
     <nav class="navbar">
         <div class="navbar-logo">
@@ -322,7 +340,7 @@
         <p>Welcome to <span>Urban Threads</span>. We are a startup clothing brand built strictly for college students who want to keep it classy while refusing to be basic. Campus life is your runway.</p>
     </div>
 
-    <div class="scroll-fade" style="margin: 40px auto; text-align: center; position: relative;">
+    <div class="scroll-fade" style="margin: 40px auto; text-align: center; position: relative; z-index: 10;">
         <div style="font-family: 'Dancing Script', cursive; font-size: 2rem; color: #d1cbbd; margin-bottom: 10px;">Stay Updated</div>
         <img src="newsletter-header.png" alt="Urban Threads Newsletter Header" style="width: 100%; max-width: 600px; height: auto; border: 3px solid #cc0000; box-shadow: 8px 8px 0px #333;">
     </div>
@@ -398,9 +416,10 @@
             const duration = Math.random() * 5 + 5; 
             gothicElement.style.animationDuration = duration + 's';
             
-            gothicElement.style.fontSize = (Math.random() * 100 + 80) + 'px';
+            gothicElement.style.fontSize = (Math.random() * 80 + 60) + 'px';
             
-            document.body.appendChild(gothicElement);
+            // Append directly to the fixed rain window, NOT the scrolling body
+            document.getElementById('rain-container').appendChild(gothicElement);
             
             setTimeout(() => gothicElement.remove(), duration * 1000);
         }
