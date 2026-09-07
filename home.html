@@ -70,10 +70,14 @@
             object-fit: cover;
             border-bottom: 3px solid #cc0000;
             display: block;
+            position: relative;
+            z-index: 10;
         }
 
         .header-text {
             margin: 40px 20px 10px;
+            position: relative;
+            z-index: 10;
         }
 
         h1 {
@@ -104,11 +108,15 @@
         .about-section {
             max-width: 700px;
             margin: 30px auto;
-            padding: 0 20px;
+            padding: 20px;
+            background: rgba(18, 18, 18, 0.85); /* Dark background to cover symbols slightly */
+            border: 1px solid #333;
             color: #b3b3b3;
             font-size: 1.1rem;
             line-height: 1.6;
             letter-spacing: 0.5px;
+            position: relative;
+            z-index: 10;
         }
 
         .about-section span {
@@ -123,11 +131,11 @@
             padding: 20px 40px 40px;
             flex-wrap: wrap;
             position: relative;
-            z-index: 10;
+            z-index: 10; /* Keeps shirts on top of the symbols */
         }
 
         .product-card {
-            background: rgba(18, 18, 18, 0.9);
+            background: rgba(18, 18, 18, 0.95);
             border: 2px solid #333;
             padding: 20px;
             width: 280px;
@@ -174,7 +182,7 @@
             border-top: 2px dashed #333;
             max-width: 800px;
             position: relative;
-            z-index: 10;
+            z-index: 10; /* Keeps promo on top of symbols */
         }
         
         .promo-title {
@@ -209,7 +217,7 @@
             background-color: rgba(0, 0, 0, 0.9);
             align-items: center;
             justify-content: center;
-            z-index: 2000;
+            z-index: 10000;
         }
 
         .modal-content {
@@ -259,8 +267,6 @@
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            position: relative;
-            z-index: 10;
         }
 
         .scroll-fade.visible {
@@ -271,23 +277,23 @@
         /* Heavy Metal / Gothic Background Animation */
         .gothic-bg {
             position: fixed;
-            color: #b30000;
+            color: #cc0000; /* Brighter red */
             font-family: 'Times New Roman', serif;
             pointer-events: none;
-            z-index: 9998;
-            opacity: 0.6;
-            text-shadow: 0 0 10px #cc0000, 0 0 30px #660000;
+            z-index: 5; /* This ensures they pass BEHIND the z-index:10 t-shirts */
+            opacity: 0.7; /* Very visible */
+            text-shadow: 0 0 15px #ff0000, 0 0 30px #990000;
             animation: metalRain linear infinite;
         }
 
         @keyframes metalRain {
-            0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 0; }
-            10% { opacity: 0.6; }
-            20% { transform: translate(-15px, 20vh) rotate(15deg) scale(1.1); opacity: 0.8; }
-            40% { transform: translate(15px, 40vh) rotate(-25deg) scale(0.9); opacity: 0.4; }
-            60% { transform: translate(-10px, 60vh) rotate(10deg) scale(1.2); opacity: 0.7; }
-            80% { opacity: 0.5; }
-            100% { transform: translateY(110vh) rotate(0deg) scale(1); opacity: 0; }
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            20% { transform: translate(-20px, 20vh) rotate(15deg); opacity: 0.9; }
+            40% { transform: translate(20px, 40vh) rotate(-25deg); opacity: 0.5; }
+            60% { transform: translate(-10px, 60vh) rotate(10deg); opacity: 0.8; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
         }
     </style>
 </head>
@@ -323,7 +329,7 @@
         <p>Welcome to <span>Urban Threads</span>. We are a startup clothing brand built strictly for college students who want to keep it classy while refusing to be basic. Campus life is your runway.</p>
     </div>
 
-    <div class="scroll-fade" style="margin: 40px auto; text-align: center;">
+    <div class="scroll-fade" style="margin: 40px auto; text-align: center; position: relative; z-index: 10;">
         <div style="font-family: 'Dancing Script', cursive; font-size: 2rem; color: #d1cbbd; margin-bottom: 10px;">Stay Updated</div>
         <img src="newsletter-header.png" alt="Urban Threads Newsletter Header" style="width: 100%; max-width: 600px; height: auto; border: 3px solid #cc0000; box-shadow: 8px 8px 0px #333;">
     </div>
@@ -394,20 +400,20 @@
             
             gothicElement.textContent = symbols[Math.floor(Math.random() * symbols.length)];
             
-            // Focus symbols slightly closer to the center content area instead of just the far edges
+            // Focus symbols slightly closer to the center content area
             gothicElement.style.left = Math.random() * 90 + 5 + '%';
-            gothicElement.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            gothicElement.style.animationDuration = (Math.random() * 5 + 4) + 's';
             
-            // Massively increased font size to appear much closer and more prominent
-            gothicElement.style.fontSize = (Math.random() * 60 + 50) + 'px';
+            // Massively increased font size (80px to 180px) so they are huge even at normal zoom
+            gothicElement.style.fontSize = (Math.random() * 100 + 80) + 'px';
             
             document.body.appendChild(gothicElement);
             
-            setTimeout(() => gothicElement.remove(), 7000);
+            setTimeout(() => gothicElement.remove(), 9000);
         }
         
-        // Spawns a symbol much faster to create a denser background effect
-        setInterval(createHeavyMetalBg, 250);
+        // Spawns a new giant symbol every 400 milliseconds
+        setInterval(createHeavyMetalBg, 400);
 
         // Scroll Animation Logic
         const observerOptions = {
